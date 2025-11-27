@@ -1,4 +1,43 @@
-// Import the data to customize and insert them into page
+// Mobile detection and blocker
+const isMobileDevice = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+         (window.innerWidth <= 768 && window.innerHeight <= 1024);
+};
+
+const showMobileBlocker = () => {
+  const blocker = document.getElementById("mobile-blocker");
+  if (blocker) {
+    blocker.classList.add("active");
+    document.body.classList.add("mobile-blocked");
+    // Prevent all interactions
+    document.body.style.overflow = "hidden";
+    document.body.style.pointerEvents = "none";
+    blocker.style.pointerEvents = "auto";
+  }
+};
+
+// Check on load and resize
+if (isMobileDevice()) {
+  showMobileBlocker();
+}
+
+window.addEventListener("resize", () => {
+  if (isMobileDevice()) {
+    showMobileBlocker();
+  } else {
+    const blocker = document.getElementById("mobile-blocker");
+    if (blocker) {
+      blocker.classList.remove("active");
+      document.body.classList.remove("mobile-blocked");
+      document.body.style.overflow = "";
+      document.body.style.pointerEvents = "";
+    }
+  }
+});
+
+// Only proceed if not a mobile device
+if (!isMobileDevice()) {
+  // Import the data to customize and insert them into page
 const skipButton = document.getElementById("skip");
 let mainTimeline = null;
 let skipRequested = false;
@@ -353,8 +392,40 @@ const createPartyPopper = () => {
   createConfetti();
 };
 
+// Audio playback function
+const playBirthdayAudio = () => {
+  const audio = document.getElementById("birthday-audio");
+  if (audio) {
+    audio.volume = 0.5; // Set volume to 50%
+    const playPromise = audio.play();
+    
+    // Handle autoplay restrictions
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          // Audio started playing
+          console.log("Audio started playing");
+        })
+        .catch(error => {
+          // Autoplay was prevented, try to play on user interaction
+          console.log("Autoplay prevented, waiting for user interaction");
+          const enableAudio = () => {
+            audio.play().catch(err => console.log("Audio play failed:", err));
+            document.removeEventListener("click", enableAudio);
+            document.removeEventListener("touchstart", enableAudio);
+          };
+          document.addEventListener("click", enableAudio);
+          document.addEventListener("touchstart", enableAudio);
+        });
+    }
+  }
+};
+
 // Animation Timeline
 const animationTimeline = () => {
+  // Start playing audio when animation begins
+  playBirthdayAudio();
+  
   // Spit chars that needs to be animated individually
   const textBoxChars = document.getElementsByClassName("hbd-chatbox")[0];
   const hbd = document.getElementsByClassName("wish-hbd")[0];
@@ -386,6 +457,8 @@ const animationTimeline = () => {
   if (skipRequested) {
     goToFinalScreen();
     setSkipButtonState(true, "Skipped");
+    // Also play audio when skipping
+    playBirthdayAudio();
   } else {
     setSkipButtonState(false, "Skip to ending");
   }
@@ -724,6 +797,12 @@ const animationTimeline = () => {
   replyBtn.addEventListener("click", () => {
     skipRequested = false;
     setSkipButtonState(false, "Skip to ending");
+    // Restart audio
+    const audio = document.getElementById("birthday-audio");
+    if (audio) {
+      audio.currentTime = 0;
+      audio.play().catch(err => console.log("Audio play failed:", err));
+    }
     tl.restart();
   });
 
@@ -826,3 +905,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 100);
 });
+
+} // End of mobile check - only desktop code runs above

@@ -11,6 +11,84 @@ body {
   background-repeat: no-repeat;
 }
 
+.mobile-blocker {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.mobile-blocker.active {
+  display: flex;
+}
+
+body.mobile-blocked .skip-button,
+body.mobile-blocked .container,
+body.mobile-blocked .interactive-emojis,
+body.mobile-blocked .interactive-sparkles-container,
+body.mobile-blocked .interactive-balloons-container,
+body.mobile-blocked .interactive-stars-container {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+#birthday-audio {
+  display: none;
+}
+
+.mobile-blocker-content {
+  text-align: center;
+  color: #fff;
+  max-width: 500px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-blocker-icon {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.mobile-blocker-content h2 {
+  font-size: 2.5rem;
+  margin: 0 0 20px 0;
+  font-weight: 400;
+}
+
+.mobile-blocker-content p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .mobile-blocker {
+    display: none !important;
+  }
+}
+
 .skip-button {
   position: fixed;
   top: 1.5rem;
