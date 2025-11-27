@@ -1,43 +1,4 @@
-// Mobile detection and blocker
-const isMobileDevice = () => {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-         (window.innerWidth <= 768 && window.innerHeight <= 1024);
-};
-
-const showMobileBlocker = () => {
-  const blocker = document.getElementById("mobile-blocker");
-  if (blocker) {
-    blocker.classList.add("active");
-    document.body.classList.add("mobile-blocked");
-    // Prevent all interactions
-    document.body.style.overflow = "hidden";
-    document.body.style.pointerEvents = "none";
-    blocker.style.pointerEvents = "auto";
-  }
-};
-
-// Check on load and resize
-if (isMobileDevice()) {
-  showMobileBlocker();
-}
-
-window.addEventListener("resize", () => {
-  if (isMobileDevice()) {
-    showMobileBlocker();
-  } else {
-    const blocker = document.getElementById("mobile-blocker");
-    if (blocker) {
-      blocker.classList.remove("active");
-      document.body.classList.remove("mobile-blocked");
-      document.body.style.overflow = "";
-      document.body.style.pointerEvents = "";
-    }
-  }
-});
-
-// Only proceed if not a mobile device
-if (!isMobileDevice()) {
-  // Import the data to customize and insert them into page
+// Import the data to customize and insert them into page
 const skipButton = document.getElementById("skip");
 let mainTimeline = null;
 let skipRequested = false;
@@ -905,5 +866,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, 100);
 });
-
-} // End of mobile check - only desktop code runs above
