@@ -110,6 +110,101 @@ body {
 
 .idea-6 span {
   font-size: 15rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.idea-6 span:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 20px rgba(255, 105, 180, 0.8));
+}
+
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.sparkles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #fff 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkle-twinkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle-twinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.celebration-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  z-index: 1001;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.celebration-emoji {
+  display: inline-block;
+  margin: 0 10px;
+  animation: emoji-bounce 0.6s ease-in-out infinite;
+}
+
+.celebration-emoji:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.celebration-emoji:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.celebration-emoji:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.celebration-emoji:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.celebration-emoji:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+@keyframes emoji-bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(15deg);
+  }
 }
 
 .six {
@@ -227,9 +322,198 @@ body {
   font-weight: lighter;
 }
 
+.scattered-photos {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.scattered-photo {
+  position: absolute;
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: scale(0) rotate(0deg);
+  pointer-events: none;
+}
+
+.scattered-photo.photo-1 {
+  top: 10%;
+  left: 5%;
+}
+
+.scattered-photo.photo-2 {
+  top: 20%;
+  right: 10%;
+}
+
+.scattered-photo.photo-3 {
+  top: 50%;
+  left: 15%;
+}
+
+.scattered-photo.photo-4 {
+  bottom: 20%;
+  right: 15%;
+}
+
+.scattered-photo.photo-5 {
+  top: 30%;
+  left: 50%;
+}
+
+.scattered-photo.photo-6 {
+  bottom: 30%;
+  left: 60%;
+}
+
 #replay {
   z-index: 3;
   cursor: pointer;
+}
+
+.interactive-emojis {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 10000;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.interactive-emoji {
+  font-size: 3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  animation: emoji-float 3s ease-in-out infinite;
+}
+
+.interactive-emoji:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.interactive-emoji:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.interactive-emoji:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.interactive-emoji:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.interactive-emoji:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+.interactive-emoji:hover {
+  transform: scale(1.3) rotate(15deg);
+  filter: drop-shadow(0 8px 16px rgba(255, 215, 0, 0.6));
+}
+
+.interactive-emoji:active {
+  transform: scale(1.1) rotate(-15deg);
+}
+
+@keyframes emoji-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.interactive-sparkles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: visible;
+}
+
+.interactive-sparkle {
+  position: absolute;
+  pointer-events: none;
+}
+
+.interactive-balloons-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  overflow: hidden;
+}
+
+.interactive-balloon {
+  position: absolute;
+  width: 60px;
+  height: auto;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.interactive-stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+.interactive-star {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.interactive-star::before,
+.interactive-star::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #ffd700;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.interactive-star::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.party-streamer {
+  position: fixed;
+  width: 4px;
+  height: 200px;
+  pointer-events: none;
+  z-index: 9996;
+  opacity: 0;
 }
 
 /* Media Queries */
@@ -295,5 +579,48 @@ body {
   .nine p {
     font-size: 1.5rem;
     font-weight: lighter;
+  }
+
+  .scattered-photo {
+    width: 100px;
+  }
+
+  .scattered-photo.photo-1 {
+    top: 5%;
+    left: 2%;
+  }
+
+  .scattered-photo.photo-2 {
+    top: 15%;
+    right: 5%;
+  }
+
+  .scattered-photo.photo-3 {
+    top: 45%;
+    left: 5%;
+  }
+
+  .scattered-photo.photo-4 {
+    bottom: 15%;
+    right: 5%;
+  }
+
+  .scattered-photo.photo-5 {
+    top: 25%;
+    left: 45%;
+  }
+
+  .scattered-photo.photo-6 {
+    bottom: 25%;
+    left: 50%;
+  }
+
+  .interactive-emojis {
+    gap: 10px;
+    bottom: 20px;
+  }
+
+  .interactive-emoji {
+    font-size: 2rem;
   }
 }
