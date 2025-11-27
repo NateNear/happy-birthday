@@ -1,4 +1,36 @@
 // Import the data to customize and insert them into page
+const skipButton = document.getElementById("skip");
+let mainTimeline = null;
+let skipRequested = false;
+
+const setSkipButtonState = (disabled, label) => {
+  if (!skipButton) return;
+  skipButton.disabled = disabled;
+  if (label) {
+    skipButton.textContent = label;
+  }
+};
+
+const goToFinalScreen = () => {
+  if (!mainTimeline) return;
+  mainTimeline.progress(1, false);
+  mainTimeline.pause();
+};
+
+const handleSkip = () => {
+  if (skipButton && skipButton.disabled) return;
+  skipRequested = true;
+  setSkipButtonState(true, "Skipping…");
+  if (mainTimeline) {
+    goToFinalScreen();
+    setSkipButtonState(true, "Skipped");
+  }
+};
+
+if (skipButton) {
+  skipButton.addEventListener("click", handleSkip);
+}
+
 const fetchData = () => {
   fetch("customize.json")
     .then(data => data.json())
@@ -350,6 +382,13 @@ const animationTimeline = () => {
   };
 
   const tl = new TimelineMax();
+  mainTimeline = tl;
+  if (skipRequested) {
+    goToFinalScreen();
+    setSkipButtonState(true, "Skipped");
+  } else {
+    setSkipButtonState(false, "Skip to ending");
+  }
 
   tl
     .to(".container", 0.1, {
@@ -548,7 +587,7 @@ const animationTimeline = () => {
       0.2
     )
     .from(
-      ".lydia-dp",
+      ".nayab-dp",
       0.5,
       {
         scale: 3.5,
@@ -683,6 +722,8 @@ const animationTimeline = () => {
   // Restart Animation on click
   const replyBtn = document.getElementById("replay");
   replyBtn.addEventListener("click", () => {
+    skipRequested = false;
+    setSkipButtonState(false, "Skip to ending");
     tl.restart();
   });
 

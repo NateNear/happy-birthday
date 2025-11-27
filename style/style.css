@@ -5,11 +5,45 @@ html {
 body {
   margin: 0;
   font-family: "Work Sans", sans-serif;
+  background-image: url('../img/background.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.skip-button {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  border: none;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 11000;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+.skip-button:hover:not(:disabled),
+.skip-button:focus-visible:not(:disabled) {
+  background: rgb(255, 105, 180);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.skip-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .container {
   height: 100vh;
-  width: 100vh;
+  width: auto;
   margin: 0 auto;
   text-align: center;
   visibility: hidden;
@@ -322,19 +356,33 @@ body {
   font-weight: lighter;
 }
 
+.nine {
+  position: relative;
+}
+
+.nine p,
+.nine .last-smile {
+  position: relative;
+  z-index: 2;
+}
+
 .scattered-photos {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  inset: 0;
   pointer-events: none;
-  z-index: 100;
+  z-index: 1;
+}
+
+.nayab-dp {
+  width: 400px;
+  height: 400px;
+  /* border-radius: 50%; */
+  object-fit: cover;
 }
 
 .scattered-photo {
   position: absolute;
-  width: 150px;
+  width: clamp(140px, 11vw, 220px);
   height: auto;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -343,35 +391,48 @@ body {
   pointer-events: none;
 }
 
+.scattered-photo.photo-3 {
+  width: clamp(170px, 13vw, 250px);
+}
+
 .scattered-photo.photo-1 {
-  top: 10%;
-  left: 5%;
+  bottom: 10%;
+  left: 40px;
 }
 
 .scattered-photo.photo-2 {
-  top: 20%;
-  right: 10%;
+  top: -60%;
+  right: 2%;
 }
 
 .scattered-photo.photo-3 {
-  top: 50%;
-  left: 15%;
+  top: 83%;
+  left: 5%;
 }
 
 .scattered-photo.photo-4 {
-  bottom: 20%;
-  right: 15%;
+  top: 83%;
+  right: 7%;
 }
 
 .scattered-photo.photo-5 {
-  top: 30%;
-  left: 50%;
+  bottom: 8%;
+  left: 12%;
 }
 
 .scattered-photo.photo-6 {
-  bottom: 30%;
-  left: 60%;
+  bottom: 6%;
+  right: 14%;
 }
+
+.scattered-photo.photo-7 {
+    top: 20%;
+    right: 18%;
+  }
+  .scattered-photo.photo-9 {
+    bottom: 90%;
+    left: 1%;
+  }
 
 #replay {
   z-index: 3;
@@ -582,37 +643,46 @@ body {
   }
 
   .scattered-photo {
-    width: 100px;
+    width: clamp(110px, 38vw, 170px);
+  }
+
+  .scattered-photo.photo-3 {
+    width: clamp(140px, 44vw, 200px);
   }
 
   .scattered-photo.photo-1 {
-    top: 5%;
+    top: 4%;
     left: 2%;
   }
 
   .scattered-photo.photo-2 {
-    top: 15%;
-    right: 5%;
+    top: 2%;
+    right: 2%;
   }
 
   .scattered-photo.photo-3 {
-    top: 45%;
-    left: 5%;
+    top: 60%;
+    left: 4%;
   }
 
   .scattered-photo.photo-4 {
-    bottom: 15%;
-    right: 5%;
+    top: 56%;
+    right: 4%;
   }
 
   .scattered-photo.photo-5 {
-    top: 25%;
-    left: 45%;
+    bottom: 6%;
+    left: 6%;
   }
 
   .scattered-photo.photo-6 {
-    bottom: 25%;
-    left: 50%;
+    bottom: 6%;
+    right: 8%;
+  }
+
+  .scattered-photo.photo-7 {
+    top: 22%;
+    right: 10%;
   }
 
   .interactive-emojis {
