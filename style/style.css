@@ -248,6 +248,15 @@ body {
 .six {
   position: relative;
 }
+@media screen and (max-width: 576px) {
+  .six {
+    height: 100vh;
+  }
+  .six .wish {
+    position: absolute;
+    bottom: 28%;
+  }
+}
 
 .six img {
   display: inline-block;
@@ -258,7 +267,7 @@ body {
 .six .hat {
   position: absolute;
   width: 80px;
-  top: -35px;
+  top: -60px;
   left: 41.5%;
   /* transform: scale(0.1); */
 }
@@ -378,8 +387,8 @@ body {
 }
 
 .nayab-dp {
-  width: 400px;
-  height: 400px;
+  width: 280px;
+  height: 280px;
   /* border-radius: 50%; */
   object-fit: cover;
 }
@@ -395,48 +404,46 @@ body {
   pointer-events: none;
 }
 
-.scattered-photo.photo-3 {
-  width: clamp(170px, 13vw, 250px);
-}
 
 .scattered-photo.photo-1 {
-  bottom: 10%;
-  left: 40px;
+  top: -8%;
+  left: 2%;
 }
 
 .scattered-photo.photo-2 {
-  top: -60%;
+  top: -10%;
   right: 2%;
 }
 
 .scattered-photo.photo-3 {
-  top: 83%;
-  left: 5%;
+  top: 78%;
+  left: 4%;
 }
 
 .scattered-photo.photo-4 {
-  top: 83%;
-  right: 7%;
+  top: 74%;
+  right: 4%;
 }
 
 .scattered-photo.photo-5 {
-  bottom: 8%;
-  left: 12%;
+  bottom: -2%;
+  left: 6%;
 }
 
 .scattered-photo.photo-6 {
-  bottom: 6%;
-  right: 14%;
+  bottom: -2%;
+  right: 8%;
 }
 
 .scattered-photo.photo-7 {
-    top: 20%;
-    right: 18%;
-  }
-  .scattered-photo.photo-9 {
-    bottom: 90%;
-    left: 1%;
-  }
+  top: 32%;
+  right: 2%;
+}
+
+.scattered-photo.photo-9 {
+  top: 32%;
+  left: 2%;
+}
 
 #replay {
   z-index: 3;
@@ -596,13 +603,13 @@ body {
 
 @media screen and (max-height: 700px) {
   .six .hat {
-    left: 32%;
+    left: 50%;
   }
 }
 
 @media screen and (max-height: 850px) and (max-width: 450px) {
   .six .hat {
-    left: 32%;
+    left: 50%;
   }
 }
 
@@ -629,12 +636,19 @@ body {
   }
 
   .six .hat {
-    width: 50px;
-    top: -20px;
+    width: 45px;
+    top: -60px;
+    left: 50%;
   }
 
   .wish-hbd {
     font-size: 2.2em;
+  }
+  @media screen and (max-width: 576px) {
+    .wish-hbd {
+      position: absolute;
+      bottom: 10%;
+    }
   }
 
   .wish h5 {
